@@ -367,7 +367,7 @@ public class calculadora extends javax.swing.JFrame {
 
     private void ceroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ceroActionPerformed
         int ceros = Integer.valueOf(cero.getText());
-        res.setText(res.getText() + "" + ceros);
+        res.setText(res.getText()+""+ ceros);
     }//GEN-LAST:event_ceroActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
@@ -379,7 +379,7 @@ public class calculadora extends javax.swing.JFrame {
         if (evt.getClickCount() == 2) {
             res.setText(" ");
         } else {
-            res.setText("" + 0);
+            res.setText(""+0);
         }
     }//GEN-LAST:event_resetMouseClicked
 
