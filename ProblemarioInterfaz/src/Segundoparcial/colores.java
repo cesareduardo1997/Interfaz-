@@ -18,6 +18,7 @@ public class colores extends javax.swing.JFrame {
      */
     public colores() {
         initComponents();
+        setLocationRelativeTo (null);
     }
 
     /**
