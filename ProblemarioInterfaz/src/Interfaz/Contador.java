@@ -154,6 +154,7 @@ public class Contador extends javax.swing.JFrame {
         int i = Integer.valueOf(muestra.getText());
         i += 1;
         muestra.setText("" + i);
+        System.out.println(i);
     }//GEN-LAST:event_aumentarActionPerformed
 
     private void aumentarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aumentarMouseClicked
