@@ -214,6 +214,7 @@ public class Vmaestro extends javax.swing.JFrame {
             requestFocus();
         }
         maestro1.setTipoexamen(tipo);
+        
         JOptionPane.showMessageDialog(this, "LAS DATOS HAN QUEDADO REGISTRADOS: " + maestro1);
     }//GEN-LAST:event_VisualizarActionPerformed
 

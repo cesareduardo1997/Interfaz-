@@ -138,7 +138,7 @@ public class VAplicarExamen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        /*Alumno a = new Alumno();
+        Alumno a = new Alumno();
         Character aux =null;
         a.setMatricula(jTextField2.getText());
         a.setNombre(jTextField1.getText());
@@ -149,7 +149,7 @@ public class VAplicarExamen extends javax.swing.JFrame {
          aux= 'C';
        } 
         a.setTipoprueba(aux);
-        System.out.println(a.toString());*/
+        System.out.println(a.toString());
         VResponderPreguntas vr = new VResponderPreguntas();
         this.setVisible(false);
         vr.setVisible(true);
