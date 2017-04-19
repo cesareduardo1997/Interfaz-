@@ -7,6 +7,7 @@ package ProyectoSegundoParcial;
 
 import ProyectoSegundoParcial.ListadePreguntas;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -152,9 +153,9 @@ public class VResponderPreguntas extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jRadioButton1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton1)
+                            .addComponent(jLabel3))
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton2)
@@ -167,12 +168,11 @@ public class VResponderPreguntas extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(jRadioButton4)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Siguiente)
                     .addComponent(Finalizar)
                     .addComponent(Generar))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,22 +208,38 @@ public class VResponderPreguntas extends javax.swing.JFrame {
     }//GEN-LAST:event_GenerarActionPerformed
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
-        Vmaestro v1 = new Vmaestro();
+        int k = Integer.valueOf(jLabel7.getText());
+         String aux;
+         Vmaestro v1 = new Vmaestro();
         int aux1 = Integer.parseInt(v1.Pe);
+         Random random  = new Random();
+         int n=random.nextInt(aux1);
          VRpreguntas v = new VRpreguntas();
+         if(aux1>k){
          p=v.Preguntas;
          ex1=v.Ex;
-         String nS;
-         p.getPosicionPre(0, ex1);
-         nS= String.valueOf(ex1.getNpregunta());
-        jLabel7.setText(nS);
+         p.getPosicionPre(n, ex1);
         jLabel8.setText(ex1.getPregunta());
         jRadioButton1.setText(ex1.getRespuestaI1());
         jRadioButton2.setText(ex1.getRespuestaI3());
         jRadioButton3.setText(ex1.getRespuestaC());
         jRadioButton4.setText(ex1.getRespuestaI2());
-       
-
+         }
+         if (aux1 == k){
+         jLabel8.setText(" ");  
+        Siguiente.setEnabled(false);
+        jRadioButton1.setEnabled(false);
+        jRadioButton2.setEnabled(false);
+        jRadioButton3.setEnabled(false);
+        jRadioButton4.setEnabled(false);
+        Finalizar.setEnabled(true);
+             k=-1;
+         }
+         
+        System.out.println(k);
+        k += 1;
+        aux = String.valueOf(k);     
+        jLabel7.setText(aux);
     }//GEN-LAST:event_SiguienteActionPerformed
 
     /**
