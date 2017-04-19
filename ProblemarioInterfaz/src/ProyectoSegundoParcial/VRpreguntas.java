@@ -12,6 +12,7 @@ package ProyectoSegundoParcial;
 import ProyectoSegundoParcial.ListadePreguntas;
 import ProyectoSegundoParcial.Examen;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class VRpreguntas extends javax.swing.JFrame {
 
@@ -33,7 +34,9 @@ public class VRpreguntas extends javax.swing.JFrame {
         initComponents();
         this.RegPreguntas = l;
     }
-     
+    public static ListadePreguntas Preguntas;
+    public static Examen Ex;
+
     public void bloquear() {
         jTextField7.setEnabled(false);
         jTextField3.setEnabled(false);
@@ -42,7 +45,7 @@ public class VRpreguntas extends javax.swing.JFrame {
         jTextField6.setEnabled(false);
         Agregar.setEnabled(false);
         Aceptar.setEnabled(false);
-        Atras.setEnabled(false);
+       
     }
 
     public void desbloquear() {
@@ -53,8 +56,10 @@ public class VRpreguntas extends javax.swing.JFrame {
         jTextField6.setEnabled(true);
         Agregar.setEnabled(true);
     }
-    public static Integer aux1;
-    public ArrayList<Examen> Preguntas = new ArrayList<Examen>();
+
+    /**
+     *
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,7 +85,6 @@ public class VRpreguntas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         Aceptar = new javax.swing.JButton();
-        Atras = new javax.swing.JButton();
         generar = new javax.swing.JButton();
         Agregar = new javax.swing.JButton();
 
@@ -121,17 +125,13 @@ public class VRpreguntas extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(39, 39, 39))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -184,13 +184,6 @@ public class VRpreguntas extends javax.swing.JFrame {
             }
         });
 
-        Atras.setText("Atras");
-        Atras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AtrasActionPerformed(evt);
-            }
-        });
-
         generar.setText("Generar Preguntas ");
         generar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,11 +205,9 @@ public class VRpreguntas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(Agregar)
-                .addGap(43, 43, 43)
+                .addGap(54, 54, 54)
                 .addComponent(generar)
                 .addGap(34, 34, 34)
-                .addComponent(Atras)
-                .addGap(18, 18, 18)
                 .addComponent(Aceptar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -231,7 +222,6 @@ public class VRpreguntas extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Atras)
                     .addComponent(Aceptar)
                     .addComponent(generar)
                     .addComponent(Agregar))
@@ -243,19 +233,16 @@ public class VRpreguntas extends javax.swing.JFrame {
 
 
     private void AceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptarMouseClicked
-        RegPreguntas.imprimir();
-        VentanaPrincipal v1=new VentanaPrincipal();
+         JOptionPane.showMessageDialog(this, "LAS PREGUNTAS FUERON REGISTRADAS");
+        //System.out.println(RegPreguntas.getPosicionPre(0,ExamenActual));
+        //System.out.println(ExamenActual.getPregunta());
+        //System.out.println(ExamenActual.getRespuestaC());
+        VentanaPrincipal v1 = new VentanaPrincipal();
         this.setVisible(false);
         v1.setVisible(true);
 
+
     }//GEN-LAST:event_AceptarMouseClicked
-
-    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-        this.setVisible(false);
-        Vmaestro v2 = new Vmaestro();
-        v2.setVisible(true);
-
-    }//GEN-LAST:event_AtrasActionPerformed
 
     private void generarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarActionPerformed
         desbloquear();
@@ -272,23 +259,22 @@ public class VRpreguntas extends javax.swing.JFrame {
         int aux1 = Integer.parseInt(v1.Pt);
         this.setVisible(true);
         if (aux1 >= k) {
-            
+            ExamenActual.setNpregunta(k);
             ExamenActual.setPregunta(jTextField7.getText());
             ExamenActual.setRespuestaC(jTextField3.getText());
             ExamenActual.setRespuestaI1(jTextField4.getText());
             ExamenActual.setRespuestaI2(jTextField5.getText());
             ExamenActual.setRespuestaI3(jTextField6.getText());
             RegPreguntas.IncluirEPregunta(ExamenActual);
-        } 
-        if(aux1==k){
-           
-           System.out.println("el arreglo fue llenado");
-           System.arraycopy(RegPreguntas, 0, Preguntas, 0, aux1);
+        }
+        if (aux1 == k) {
+
+            System.out.println("el arreglo fue llenado");
             bloquear();
-             Aceptar.setEnabled(true);
-             
-             RegPreguntas.imprimir(); ;
-             k=-1;
+            Aceptar.setEnabled(true);
+            RegPreguntas.imprimir();
+            Ex = ExamenActual;
+            k = -1;
         }
         k += 1;
         aux = String.valueOf(k);
@@ -299,9 +285,10 @@ public class VRpreguntas extends javax.swing.JFrame {
         jTextField5.setText(" ");
         jTextField6.setText(" ");
         jLabel7.setText(aux);
+        Preguntas = RegPreguntas;
+
     }//GEN-LAST:event_AgregarActionPerformed
 
-   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -337,7 +324,6 @@ public class VRpreguntas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JButton Agregar;
-    private javax.swing.JButton Atras;
     private javax.swing.JButton generar;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;

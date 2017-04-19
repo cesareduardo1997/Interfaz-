@@ -164,7 +164,11 @@ public class Vmaestro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
+         VentanaPrincipal v = new VentanaPrincipal();
         this.setVisible(false);
+        v.setVisible(true);
+        dispose();
+        
 
     }//GEN-LAST:event_AtrasActionPerformed
 

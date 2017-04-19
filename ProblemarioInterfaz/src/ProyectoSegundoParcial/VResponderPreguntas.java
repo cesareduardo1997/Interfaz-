@@ -5,6 +5,9 @@
  */
 package ProyectoSegundoParcial;
 
+import ProyectoSegundoParcial.ListadePreguntas;
+import java.util.ArrayList;
+
 /**
  *
  * @author TOSHIBA
@@ -14,8 +17,15 @@ public class VResponderPreguntas extends javax.swing.JFrame {
     /**
      * Creates new form VResponderPreguntas
      */
+    private ListadePreguntas PreR;
+    private Examen ex;
+
     public VResponderPreguntas() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        bloquear();
+        Vmaestro v2 = new Vmaestro();
+        VRpreguntas vr = new VRpreguntas();
     }
 
     /**
@@ -34,15 +44,15 @@ public class VResponderPreguntas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Siguiente = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        Finalizar = new javax.swing.JButton();
+        Generar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,64 +68,75 @@ public class VResponderPreguntas extends javax.swing.JFrame {
 
         jLabel6.setText("D)");
 
-        jButton1.setText("Atras");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Siguiente.setText("Siguiente Pregunta");
+        Siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SiguienteActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Siguiente Pregunta");
-
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("jRadioButton1");
+        jRadioButton1.setText("........");
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("jRadioButton2");
+        jRadioButton2.setText(".......");
 
         buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("jRadioButton3");
+        jRadioButton3.setText("......");
 
         buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("jRadioButton4");
+        jRadioButton4.setText(".......");
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("0");
 
-        jLabel8.setText("jLabel8");
+        jLabel8.setText(".......");
 
-        jButton3.setText("Finalizar");
+        Finalizar.setText("Finalizar");
+        Finalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FinalizarActionPerformed(evt);
+            }
+        });
+
+        Generar.setText("Generar");
+        Generar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Siguiente)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jRadioButton4, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(87, 87, 87))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton2)
+                                .addComponent(jRadioButton1)
+                                .addComponent(jRadioButton3)
+                                .addComponent(jRadioButton4))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(Generar)
+                        .addGap(18, 18, 18)
+                        .addComponent(Finalizar)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,23 +163,68 @@ public class VResponderPreguntas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton3)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton4))
-                    .addComponent(jLabel6))
+                        .addGap(26, 26, 26))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jRadioButton4)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(Siguiente)
+                    .addComponent(Finalizar)
+                    .addComponent(Generar))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ 
+    ListadePreguntas p;
+    Examen ex1;
+    public void bloquear() {
+        Finalizar.setEnabled(false);
+        Siguiente.setEnabled(false);
+        jRadioButton1.setEnabled(false);
+        jRadioButton2.setEnabled(false);
+        jRadioButton3.setEnabled(false);
+        jRadioButton4.setEnabled(false);
+        
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    public void Desbloquear() {
+        Siguiente.setEnabled(true);
+        jRadioButton1.setEnabled(true);
+        jRadioButton2.setEnabled(true);
+        jRadioButton3.setEnabled(true);
+        jRadioButton4.setEnabled(true);
+    }
+    private void FinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarActionPerformed
+       
+            
+    }//GEN-LAST:event_FinalizarActionPerformed
+
+    private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
+        Desbloquear();
+        Generar.setEnabled(false);
+    }//GEN-LAST:event_GenerarActionPerformed
+
+    private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
+        Vmaestro v1 = new Vmaestro();
+        int aux1 = Integer.parseInt(v1.Pe);
+         VRpreguntas v = new VRpreguntas();
+         p=v.Preguntas;
+         ex1=v.Ex;
+         String nS;
+         p.getPosicionPre(0, ex1);
+         nS= String.valueOf(ex1.getNpregunta());
+        jLabel7.setText(nS);
+        jLabel8.setText(ex1.getPregunta());
+        jRadioButton1.setText(ex1.getRespuestaI1());
+        jRadioButton2.setText(ex1.getRespuestaI3());
+        jRadioButton3.setText(ex1.getRespuestaC());
+        jRadioButton4.setText(ex1.getRespuestaI2());
+       
+
+    }//GEN-LAST:event_SiguienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,10 +262,10 @@ public class VResponderPreguntas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Finalizar;
+    private javax.swing.JButton Generar;
+    private javax.swing.JButton Siguiente;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -16,19 +16,29 @@ public class Examen {
     private String respuestaI1;
     private String respuestaI2;
     private String respuestaI3;
+    private Integer Npregunta;
     public Examen() {
         this.pregunta=" ";
         this.respuestaC=" ";
         this.respuestaI1=" ";
         this.respuestaI2=" ";
         this.respuestaI3=" ";
+        this.Npregunta=0;
     }
 
     @Override
     public String toString() {
-        return pregunta + " " + respuestaC + " " + respuestaI1 + " " + respuestaI2 + " " + respuestaI3;
+        return pregunta+" "+respuestaC+" "+respuestaI1+ " "+respuestaI2+" "+respuestaI3+" "+Npregunta;
     }
 
+    public Integer getNpregunta() {
+        return Npregunta;
+    }
+
+    public void setNpregunta(Integer Npregunta) {
+        this.Npregunta = Npregunta;
+    }
+     
     public String getPregunta() {
         return pregunta;
     }

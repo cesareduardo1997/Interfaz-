@@ -7,6 +7,7 @@ package ProyectoSegundoParcial;
 
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Cesar
@@ -22,10 +23,7 @@ public class ListadePreguntas {
     public ListadePreguntas() {
     }
 
-    /*@Override
-    public String toString() {
-        return "ListadePreguntas{" + "ListadoPreguntas=" + ListadoPreguntas + '}';
-    }*/
+   
 
     public ArrayList<Examen> getListadoPreguntas() {
         return ListadoPreguntas;
@@ -40,18 +38,22 @@ public class ListadePreguntas {
     }
 
     public void imprimir() {
-        if (ListadoPreguntas != null) {
+        if (ListadoPreguntas!= null) {
             for (Examen opc : ListadoPreguntas) {
-                System.out.println("---------------");
-                System.out.println(opc.getPregunta());
-                System.out.println(opc.getRespuestaC());
-                System.out.println(opc.getRespuestaI1());
-                System.out.println(opc.getRespuestaI2());
-                System.out.println(opc.getRespuestaI3());
+               System.out.println(opc.toString()); 
             }
         } else {
             System.out.println("No hay preguntas registradas");
         }
     }
-
+     public String getPosicionPre (int posicion,Examen e) {
+         System.out.println("posicion: "+posicion);
+        if (posicion >= 0 && posicion <  ListadoPreguntas .size() ) {
+            e=new Examen();
+            return  ListadoPreguntas .get(posicion)+" "+e;
+              
+               
+        }
+        return null;
+     }
 }
