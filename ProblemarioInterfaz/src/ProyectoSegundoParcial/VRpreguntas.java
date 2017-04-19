@@ -9,29 +9,31 @@ package ProyectoSegundoParcial;
  *
  * @author Cesar
  */
+import ProyectoSegundoParcial.ListadePreguntas;
+import ProyectoSegundoParcial.Examen;
+import java.util.ArrayList;
+
 public class VRpreguntas extends javax.swing.JFrame {
 
     /**
      * Creates new form VRpreguntas
      */
     private Maestro m1;
-    private Examen ex;
-    private ModalResult result;
-    ModalResult resultado;
+    ListadePreguntas RegPreguntas = new ListadePreguntas();
+    Examen ExamenActual = new Examen();
 
     public VRpreguntas() {
         initComponents();
         bloquear();
         this.setLocationRelativeTo(null);
         Vmaestro v2 = new Vmaestro();
-        result = this.result;
-        ex = new Examen();
     }
 
-    public ModalResult getResult() {
-        return result;
+    public VRpreguntas(ListadePreguntas l) {
+        initComponents();
+        this.RegPreguntas = l;
     }
-
+     
     public void bloquear() {
         jTextField7.setEnabled(false);
         jTextField3.setEnabled(false);
@@ -40,6 +42,7 @@ public class VRpreguntas extends javax.swing.JFrame {
         jTextField6.setEnabled(false);
         Agregar.setEnabled(false);
         Aceptar.setEnabled(false);
+        Atras.setEnabled(false);
     }
 
     public void desbloquear() {
@@ -51,7 +54,7 @@ public class VRpreguntas extends javax.swing.JFrame {
         Agregar.setEnabled(true);
     }
     public static Integer aux1;
-
+    public ArrayList<Examen> Preguntas = new ArrayList<Examen>();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -240,7 +243,10 @@ public class VRpreguntas extends javax.swing.JFrame {
 
 
     private void AceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptarMouseClicked
-       ex.imprimir();
+        RegPreguntas.imprimir();
+        VentanaPrincipal v1=new VentanaPrincipal();
+        this.setVisible(false);
+        v1.setVisible(true);
 
     }//GEN-LAST:event_AceptarMouseClicked
 
@@ -253,41 +259,40 @@ public class VRpreguntas extends javax.swing.JFrame {
 
     private void generarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarActionPerformed
         desbloquear();
-        Vmaestro v1 = new Vmaestro();
-          
-
-
+        generar.setEnabled(false);
     }//GEN-LAST:event_generarActionPerformed
 
+
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-         int i = Integer.valueOf(jLabel7.getText());
-         String aux;
+        ExamenActual = new Examen();
+        int k = Integer.valueOf(jLabel7.getText());
+        String aux;
         Vmaestro v1 = new Vmaestro();
         v1.setVisible(false);
-        int aux1 = Integer.parseInt(v1.Pt);  
+        int aux1 = Integer.parseInt(v1.Pt);
         this.setVisible(true);
-     
-        if (aux1>=i) {
-            this.setVisible(true);
-            ex.setPregunta(jTextField7.getText());
-            ex.setPreguntasT(aux1);
-            ex.setRespuestaC(jTextField3.getText());
-            ex.setRespuestaI1(jTextField4.getText());
-            ex.setRespuestaI2(jTextField5.getText());
-            ex.setRespuestaI3(jTextField6.getText());
-            System.out.println(ex.toString());
-            ex.agregarpreguntas();
+        if (aux1 >= k) {
             
+            ExamenActual.setPregunta(jTextField7.getText());
+            ExamenActual.setRespuestaC(jTextField3.getText());
+            ExamenActual.setRespuestaI1(jTextField4.getText());
+            ExamenActual.setRespuestaI2(jTextField5.getText());
+            ExamenActual.setRespuestaI3(jTextField6.getText());
+            RegPreguntas.IncluirEPregunta(ExamenActual);
+        } 
+        if(aux1==k){
+           
+           System.out.println("el arreglo fue llenado");
+           System.arraycopy(RegPreguntas, 0, Preguntas, 0, aux1);
+            bloquear();
+             Aceptar.setEnabled(true);
+             
+             RegPreguntas.imprimir(); ;
+             k=-1;
         }
-        else{
-          System.out.println("el arreglo fue llenado");
-          bloquear();
-          Aceptar.setEnabled(true);
-          ex.imprimir();
-        }
-        i+= 1;
-        aux=String.valueOf(i);
-        
+        k += 1;
+        aux = String.valueOf(k);
+
         jTextField7.setText(" ");
         jTextField3.setText(" ");
         jTextField4.setText(" ");
@@ -296,9 +301,7 @@ public class VRpreguntas extends javax.swing.JFrame {
         jLabel7.setText(aux);
     }//GEN-LAST:event_AgregarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

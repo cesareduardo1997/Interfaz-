@@ -10,5 +10,8 @@ package ProyectoSegundoParcial;
  * @author Cesar
  */
 public class Alumno {
-    
-}
+    private String nombre;
+    private String Matricula;
+    private String Tipoprueba;
+    private Integer dia,mes,año;
+ }
