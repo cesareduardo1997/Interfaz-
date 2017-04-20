@@ -228,19 +228,16 @@ public class VResponderPreguntas extends javax.swing.JFrame {
     }
     private void FinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarActionPerformed
        JOptionPane.showMessageDialog(this, "Tu calificacion es de :"+cal);      
-        this.dispose();
-
+        VentanaPrincipal v = new VentanaPrincipal();
+        this.setVisible(false);
+        v.setVisible(true);
     }//GEN-LAST:event_FinalizarActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
         Desbloquear();
         Generar.setEnabled(false);
     }//GEN-LAST:event_GenerarActionPerformed
-    public int calificacion(int a, int p) {
-        int cal;
-        cal = (a * 10) / p;
-        return cal;
-    }
+    
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
         int k = Integer.valueOf(jLabel7.getText());
         String aux,a;
